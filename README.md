@@ -40,6 +40,7 @@ urls.txt → File containing websites to monitor (one per line)
 
 
 ## 📊 Example Output
+```md
 -------------------------------------------------
 | URL                | Status | Response Time | Last Checked |
 -------------------------------------------------
@@ -47,6 +48,7 @@ urls.txt → File containing websites to monitor (one per line)
 | https://github.com | 503    |  N/A         | 2025-03-22 14:30:10 |
 -------------------------------------------------
 
+```
 Color Codes:
 🟢 Green → Website is up (200-399)
 🟡 Yellow → Client error (400-499)
