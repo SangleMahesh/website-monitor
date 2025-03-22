@@ -26,11 +26,13 @@ cd website-monitor
 pip install -r requirements.txt
 ```
 
-### **2️⃣ Create a File with URLs to Monitor**
+### **3️⃣ Create a File with URLs to Monitor**
 ```sh
 echo "https://google.com" > urls.txt
 echo "https://github.com" >> urls.txt
 ```
+---
+
 ## 🎯 Usage
 ```sh
 python script.py urls.txt -i 60
@@ -38,6 +40,7 @@ python script.py urls.txt -i 60
 urls.txt → File containing websites to monitor (one per line)
 -i 60 → Interval for checks (default: 30 seconds)
 
+---
 
 ## 📊 Example Output
 ```md
@@ -54,6 +57,8 @@ Color Codes:
 🟡 Yellow → Client error (400-499)
 🔴 Red → Server error (500+ or timeout)
 
+---
+
 ## 🔧 Configuration
 ### Modify Check Interval
 The script checks URLs every 30 seconds by default. Change this with -i <seconds>:
@@ -62,6 +67,8 @@ python script.py urls.txt -i 120  # Check every 2 minutes
 ```
 Add More URLs
 Edit urls.txt to add more websites.
+
+---
 
 ## 🏗️ Contributing
 Contributions are welcome!
@@ -73,6 +80,8 @@ Create a new branch: git checkout -b feature-name
 Commit changes: git commit -m "Added new feature"
 
 Push and create a PR!
+
+---
 
 ## ⭐ Support
 If you found this useful, please star the repo ⭐ and share it!
