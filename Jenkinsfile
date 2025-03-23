@@ -1,26 +1,39 @@
-pipeline{
-  agent any
+pipeline {
+    agent any
 
-  stages{
-    stage("Clone"){
-      step{
-        git url: "https://github.com/SangleMahesh/website-monitor.git" , branch: "main"
-      }
+    environment {
+        DOCKER_IMAGE = "sanglemahesh/website-monitor-app"
     }
-    stage("Build"){
-      step{
-        sh "docker build . -t website-monitor-app"
-      }
+
+    stages {
+        stage("Clone") {
+            steps {
+                git branch: 'main', 
+                    url: 'https://github.com/SangleMahesh/website-monitor.git'
+            }
+        }
+
+        stage("Build") {
+            steps {
+                sh "docker build -t ${DOCKER_IMAGE} ."
+            }
+        }
+
+        stage("Push to DockerHub") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                 usernameVariable: 'DOCKER_USER', 
+                                                 passwordVariable: 'DOCKER_PASS')]) {
+                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                    sh "docker push ${DOCKER_IMAGE}"
+                }
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                echo "Deployed Successfully"
+            }
+        }
     }
-    stage("Push to DockerHub"){
-      step{
-        echo "Pushed to docker hub"
-      }
-    }
-    stage("Deploy"){
-      step{
-        echo "Deployed Successfully"
-      }
-    }
-  }
 }
