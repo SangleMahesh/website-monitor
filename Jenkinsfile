@@ -18,7 +18,7 @@ pipeline {
         stage("Push to DockerHub") {
             steps {
                withCredentials([usernamePassword(credentialsId:"docker-hub-credentials",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
-                sh "docker tag website-monitor-app-new ${env.dockerHubUser}/website-monitor-app-new:latest"
+                sh "docker tag website-monitor-app ${env.dockerHubUser}/website-monitor-app:latest"
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                  sh "docker push ${env.dockerHubUser}/website-monitor-app:latest"
                 }
