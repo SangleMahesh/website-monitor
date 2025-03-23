@@ -11,7 +11,7 @@ pipeline {
 
         stage("Build") {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE} ."
+                sh "docker build . -t website-monitor-app"
             }
         }
 
